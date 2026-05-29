@@ -1,0 +1,3356 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKA SRI DARMA - UI/UX & Developer</title>
+
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="E-Portfolio Eka Sri Darma, Desainer UI/UX & Developer profesional.">
+    <meta name="theme-color" content="#0D0D0D">
+
+    <!-- Fonts: Bebas Neue, DM Serif Display, DM Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dancing+Script:wght@400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Serif+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* CSS Variables - Dark Editorial Luxury Theme */
+        :root {
+            --bg-color: #0B1E36;
+            /* Deep Navy Blue */
+            --text-color: #F5F0E8;
+            /* Bone White */
+            --accent-color: #FFB800;
+            /* Electric Amber */
+
+            --font-hero: 'Bebas Neue', sans-serif;
+            --font-sub: 'DM Serif Display', serif;
+            --font-mono: 'DM Mono', monospace;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+            /* Custom cursor */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sub);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('images/pngtree-vector-batik-parang-pattern-white-chocolate-png-image_12657633.png');
+            background-repeat: repeat;
+            background-size: 300px;
+            opacity: 0.05;
+            /* Tekstur transparan agar warna biru tetap dominan */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-circle {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+        }
+
+        .cursor-circle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--text-color);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        /* Typography utility */
+        .mono-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 1.125rem 4rem;
+            background-color: rgba(11, 30, 54, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 54px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(255, 184, 0, 0.3));
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.75));
+            transform: scale(1.08);
+        }
+
+        .brand-name {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-name .brand-title {
+            font-family: var(--font-hero);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        .brand-name .brand-sub {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Dropdown Desktop */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(11, 30, 54, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 280px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 240, 232, 0.1);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.8);
+            border-left: 2px solid transparent;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 184, 0, 0.05);
+            border-left: 2px solid var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: 0.3s ease;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            z-index: 999;
+            transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .mobile-nav.open {
+            right: 0;
+        }
+
+        .mobile-nav a,
+        .mobile-dropdown-toggle {
+            font-family: var(--font-hero);
+            font-size: 4rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-dropdown-toggle:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Dropdown */
+        .mobile-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-dropdown-toggle .arrow {
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .mobile-item.open .mobile-dropdown-toggle .arrow {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        .mobile-dropdown-menu {
+            max-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
+            width: 100%;
+        }
+
+        .mobile-item.open .mobile-dropdown-menu {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+
+        .mobile-dropdown-menu a {
+            font-size: 1.5rem;
+            font-family: var(--font-mono);
+            letter-spacing: 2px;
+            color: rgba(245, 240, 232, 0.7);
+        }
+
+        .mobile-dropdown-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Global Sections */
+        section {
+            padding: 8rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.5s;
+        }
+
+        /* 1. HERO SECTION */
+        .hero {
+            position: relative;
+            padding-top: 10rem;
+            justify-content: flex-start;
+        }
+
+        .hero-title {
+            font-family: var(--font-hero);
+            font-size: 13vw;
+            line-height: 0.85;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title .offset {
+            margin-left: 15vw;
+        }
+
+        .hero-profession {
+            margin-top: 2rem;
+            color: var(--accent-color);
+            margin-left: 15vw;
+        }
+
+        .marquee-wrapper {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            border-top: 1px solid rgba(245, 240, 232, 0.2);
+            border-bottom: 1px solid rgba(245, 240, 232, 0.2);
+            padding: 1.5rem 0;
+        }
+
+        .marquee {
+            display: flex;
+            width: fit-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee span {
+            font-family: var(--font-hero);
+            font-size: 3rem;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-color);
+            white-space: nowrap;
+            padding: 0 2rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        
+
+        /* 2. ABOUT SECTION */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            position: relative;
+        }
+
+        .about-quote {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-style: italic;
+        }
+
+        .about-quote span {
+            color: var(--accent-color);
+        }
+
+        /* Paragraph Slider */
+        .about-right {
+            position: relative;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .para-slider-wrap {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            min-height: 260px;
+        }
+
+        .para-slides {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .para-slide {
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 0.5rem;
+        }
+
+        .about-desc {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .slide-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Dot Navigation */
+        .para-dots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding-top: 0.5rem;
+        }
+
+        .para-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(245, 240, 232, 0.25);
+            border: none;
+            cursor: none;
+            transition: all 0.35s ease;
+            position: relative;
+        }
+
+        .para-dot::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+        }
+
+        .para-dot.active {
+            background-color: var(--accent-color);
+            box-shadow: 0 0 8px var(--accent-color);
+            transform: scale(1.4);
+        }
+
+        .para-dot:hover:not(.active) {
+            background-color: rgba(245, 240, 232, 0.6);
+            transform: scale(1.2);
+        }
+
+        /* Progress bar next to dots */
+        .para-progress-bar {
+            width: 1px;
+            height: 40px;
+            background-color: rgba(245, 240, 232, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .para-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--accent-color);
+            transition: height 0.6s ease;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--text-color);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
+        }
+
+        .badge-vertical {
+            position: absolute;
+            top: 0;
+            right: -4rem;
+            transform: rotate(90deg) translateY(-100%);
+            transform-origin: top right;
+            color: var(--accent-color);
+            letter-spacing: 3px;
+            white-space: nowrap;
+        }
+
+        /* 2.5 REGION SECTION */
+        .region-section {
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .region-card {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            background-color: #102A4A;
+            background-image: url('images/Peta Indonesia.png');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 2rem 3.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+
+        #inspirasi .region-card {
+            background-image: url('images/pngtree-black-and-white-mega-mendung-batik-seamless-cloud-pattern-vector-png-image_17662309.webp');
+        }
+
+        #inspirasi .region-text {
+            columns: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        }
+
+        /* TAB NAVIGATION */
+        .page-subnav {
+            display: flex;
+            justify-content: center;
+            gap: 3.5rem;
+            margin-bottom: 3rem;
+            z-index: 10;
+        }
+
+        .subnav-btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.4s ease;
+        }
+
+        .subnav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .subnav-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(255, 184, 0, 0.3);
+        }
+
+        .subnav-btn.active:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(255, 184, 0, 0.5);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: tabPopup 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes tabPopup {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .region-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(11, 30, 54, 0.95) 0%, rgba(11, 30, 54, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .region-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+        }
+
+        .region-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .region-title {
+            font-family: var(--font-hero);
+            font-size: 5rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .region-text {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+            text-align: justify;
+            opacity: 0.9;
+            columns: 3;
+            column-gap: 3rem;
+        }
+
+        .region-text p {
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+        }
+
+        @media (max-width: 1024px) {
+            .region-text {
+                columns: 2;
+            }
+
+            .region-card {
+                padding: 2rem 2rem;
+            }
+
+            .region-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .region-text {
+                columns: 1;
+            }
+
+            .region-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .region-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* 2.6 MOTIVASI SECTION */
+        .motivation-section {
+            padding: 5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .motivation-card {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            background-color: #1E3557;
+            /* biru pastel tipis / elegant muted slate blue */
+            color: var(--text-color);
+            /* Bone White */
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 4rem 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+
+        .motivation-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+        }
+
+        .motivation-quote {
+            font-family: var(--font-sub);
+            /* serif */
+            font-style: italic;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            text-align: center;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 2rem;
+            margin: 0 auto;
+            max-width: 1000px;
+            position: relative;
+            color: var(--accent-color);
+        }
+
+        .motivation-subtitle {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .motivation-text {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            font-weight: 300;
+            text-align: justify;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .motivation-text p {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .motivation-card {
+                padding: 3rem;
+            }
+
+            .motivation-quote {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .motivation-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .motivation-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .motivation-quote {
+                font-size: 1.25rem;
+                padding-left: 1rem;
+                border-left-width: 3px;
+            }
+        }
+
+        /* 3. PROJECTS SECTION */
+        .section-header {
+            font-family: var(--font-hero);
+            font-size: 6rem;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+        }
+
+/* ARTEFAK SECTION STYLING */
+        .artefak-subtitle {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        /* 1. Main Tab Capsule Control (Siklus) */
+        .siklus-capsule-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .siklus-capsule {
+            display: inline-flex;
+            background: rgba(16, 42, 74, 0.6); /* Muted slate/navy background */
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 9999px;
+            padding: 0.4rem;
+            gap: 0.2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .siklus-tab-btn {
+            padding: 0.8rem 2.2rem;
+            border-radius: 9999px;
+            border: none;
+            background: transparent;
+            color: rgba(245, 240, 232, 0.6);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .siklus-tab-btn:hover {
+            color: var(--text-color);
+        }
+
+        .siklus-tab-btn.active {
+            background: #c5f8c5; /* Pastel lime green */
+            color: #14532d;      /* Dark green text for strong contrast */
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(197, 248, 197, 0.2);
+        }
+
+        /* 2. Category Filter Pills */
+        .filter-pills-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .filter-pill-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid rgba(245, 240, 232, 0.15);
+            color: rgba(245, 240, 232, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .filter-pill-btn:hover {
+            border-color: rgba(245, 240, 232, 0.6);
+            color: var(--text-color);
+        }
+
+        .filter-pill-btn.active {
+            background: rgba(74, 222, 128, 0.1);
+            border-color: #4ade80; /* Vibrant light green */
+            color: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.15);
+        }
+
+        /* 3. Info Bar / Breadcrumbs */
+        .artefak-info-bar {
+            max-width: 1400px;
+            width: calc(100% - 8rem);
+            margin: 0 auto 3rem auto;
+            background: rgba(16, 42, 74, 0.4);
+            border: 1px solid rgba(74, 222, 128, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .info-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .info-bar-icon-badge {
+            background: #4ade80;
+            color: #0b1e36;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-bar-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-bar-count {
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .info-bar-desc {
+            color: rgba(245, 240, 232, 0.5);
+            font-size: 0.75rem;
+            margin-top: 0.1rem;
+        }
+
+        .info-bar-right {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.4);
+            letter-spacing: 1px;
+            text-align: right;
+        }
+
+        /* 4. Elegant Document Card Grid */
+        .artefak-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .artefak-card {
+            position: relative;
+            background: rgba(16, 42, 74, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .artefak-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255, 184, 0, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .artefak-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 184, 0, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .artefak-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Container Thumbnail Gambar */
+        .artefak-card-thumb {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1;
+        }
+
+        .artefak-card-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .artefak-card:hover .artefak-card-thumb img {
+            transform: scale(1.08);
+        }
+
+        /* PDF Preview inside Penilaian Cards */
+        .penilaian-pdf-thumb {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: #fff;
+        }
+
+        .penilaian-pdf-thumb iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+
+        .penilaian-pdf-thumb:hover iframe {
+            pointer-events: auto;
+        }
+
+        .penilaian-pdf-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(10, 15, 30, 1), transparent);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Diagonal Ribbon for PDF Badge */
+        .artefak-ribbon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .artefak-ribbon::after {
+            content: 'PDF';
+            position: absolute;
+            top: 10px;
+            left: -22px;
+            width: 75px;
+            height: 22px;
+            background: linear-gradient(90deg, #102a4a 0%, #1e3557 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 20px;
+            transform: rotate(-45deg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Category Tag on the top right */
+        .artefak-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(255, 184, 0, 0.15);
+            color: var(--accent-color);
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            backdrop-filter: blur(4px);
+            z-index: 3;
+        }
+
+        .artefak-card-body {
+            padding: 1.8rem 2rem 0 2rem;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            z-index: 2;
+        }
+
+        .artefak-card-title {
+            font-family: var(--font-hero);
+            font-size: 1.8rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .artefak-card:hover .artefak-card-title {
+            color: var(--accent-color);
+        }
+
+        .artefak-card-desc {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(245, 240, 232, 0.7);
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .artefak-card-footer {
+            padding: 0 2rem 1.8rem 2rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .artefak-btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(245, 240, 232, 0.2);
+            background: transparent;
+            color: var(--text-color);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            cursor: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Amber Analisis Button on bottom-left */
+        .artefak-btn-analisis {
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            background: rgba(255, 184, 0, 0.05);
+            color: var(--accent-color);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            cursor: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 5;
+        }
+
+        .artefak-btn-analisis:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(255, 184, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Premium Analisis Modal Popup Styles */
+        .analisis-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(11, 30, 54, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .analisis-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .analisis-modal {
+            background: linear-gradient(145deg, #102a4a, #0b1e36);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 184, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .analisis-modal-overlay.active .analisis-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .analisis-modal-header {
+            padding: 1.8rem 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(16, 42, 74, 0.3);
+        }
+
+        .analisis-modal-title-area {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .analisis-modal-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .analisis-modal-title {
+            font-family: var(--font-hero);
+            font-size: 2rem;
+            color: var(--text-color);
+            line-height: 1.15;
+            letter-spacing: 1px;
+        }
+
+        .analisis-modal-close {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .analisis-modal-close:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(255, 184, 0, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .analisis-modal-body {
+            padding: 2.5rem;
+            overflow-y: auto;
+            flex: 1;
+            font-family: var(--font-sub);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) rgba(0, 0, 0, 0.2);
+        }
+
+        .analisis-modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .analisis-modal-body::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .analisis-modal-body::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        .analisis-sec {
+            margin-bottom: 2.5rem;
+            animation: modalContentFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes modalContentFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .analisis-sec-title {
+            font-family: var(--font-hero);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid rgba(255, 184, 0, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .analisis-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: rgba(245, 240, 232, 0.85);
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        .analisis-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: rgba(245, 240, 232, 0.85);
+        }
+
+        .analisis-list li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+
+        .analisis-sub-sec {
+            margin-top: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .analisis-sub-title {
+            font-family: var(--font-sub);
+            font-size: 1.05rem;
+            color: var(--text-color);
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .analisis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: rgba(16, 42, 74, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .analisis-table th,
+        .analisis-table td {
+            padding: 1rem 1.2rem;
+            text-align: left;
+        }
+
+        .analisis-table th {
+            background-color: rgba(255, 184, 0, 0.1);
+            color: var(--accent-color);
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255, 184, 0, 0.2);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .analisis-table td {
+            color: rgba(245, 240, 232, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            line-height: 1.5;
+        }
+
+        .analisis-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .analisis-table tr:hover td {
+            background: rgba(255, 184, 0, 0.02);
+            color: var(--text-color);
+        }
+
+        .analisis-box {
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .analisis-box.kelebihan {
+            background: rgba(46, 204, 113, 0.08);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        .analisis-box.kekurangan {
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .analisis-modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+            .analisis-modal-header {
+                padding: 1.2rem 1.5rem;
+            }
+            .analisis-modal-title {
+                font-size: 1.5rem;
+            }
+            .analisis-modal-body {
+                padding: 1.5rem;
+            }
+            .analisis-table th, .analisis-table td {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        .artefak-btn:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
+        }
+
+        @media (max-width: 1024px) {
+            .artefak-grid {
+                padding: 0 2rem;
+            }
+            .artefak-info-bar {
+                width: calc(100% - 4rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .artefak-grid {
+                padding: 0 1.5rem;
+                grid-template-columns: 1fr;
+            }
+            .artefak-info-bar {
+                width: calc(100% - 3rem);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .info-bar-right {
+                text-align: left;
+            }
+            .siklus-tab-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 4. EXPERIENCE SECTION */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background-color: rgba(245, 240, 232, 0.2);
+        }
+
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 0;
+            background-color: var(--accent-color);
+            z-index: 1;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 2rem 3rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            width: 14px;
+            height: 14px;
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -7px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -7px;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .timeline-company {
+            font-family: var(--font-hero);
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-style: italic;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* 4.5 MODEL GURU SECTION */
+        .model-guru-section {
+            padding: 8rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .model-guru-intro {
+            text-align: center;
+            margin-bottom: 5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .model-guru-intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .misi-container {
+            margin-bottom: 6rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 4rem;
+        }
+
+        .misi-title, .kompetensi-title {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .misi-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .misi-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .misi-icon {
+            font-size: 2rem;
+            background: rgba(255, 184, 0, 0.1);
+            color: var(--accent-color);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .misi-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .misi-content p {
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .kompetensi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .kompetensi-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .kompetensi-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(255, 184, 0, 0.1);
+        }
+
+        .kompetensi-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kompetensi-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .kompetensi-card .strategy {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .kompetensi-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* 4.6 REFLEKSI & FILOSOFI SECTION */
+        .refleksi-filosofi-section {
+            padding: 8rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .refleksi-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .refleksi-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .refleksi-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .refleksi-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 30px rgba(255, 184, 0, 0.08);
+        }
+
+        .refleksi-num {
+            font-family: var(--font-hero);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--accent-color);
+            opacity: 0.15;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .refleksi-card:hover .refleksi-num {
+            opacity: 0.4;
+            transform: scale(1.1);
+        }
+
+        .refleksi-card-title {
+            font-family: var(--font-sub);
+            font-size: 1.4rem;
+            color: #fff;
+            line-height: 1.4;
+            margin-right: 3rem; /* Leave room for number */
+        }
+
+        .refleksi-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            text-align: justify;
+        }
+
+        .filosofi-content-card {
+            background: linear-gradient(135deg, rgba(16, 42, 74, 0.4) 0%, rgba(11, 30, 54, 0.4) 100%);
+            border: 1px solid rgba(255, 184, 0, 0.15);
+            border-radius: 24px;
+            padding: 4.5rem;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .filosofi-quote-mark {
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+            font-size: 8rem;
+            font-family: 'DM Serif Display', serif;
+            color: var(--accent-color);
+            opacity: 0.1;
+            line-height: 1;
+        }
+
+        .filosofi-body-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .filosofi-body-text p {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            text-align: justify;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .refleksi-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .filosofi-content-card {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .refleksi-section, .refleksi-filosofi-section {
+                padding: 4rem 1.5rem;
+            }
+            .filosofi-content-card {
+                padding: 2rem 1.5rem;
+            }
+            .filosofi-quote-mark {
+                font-size: 6rem;
+                left: 1.5rem;
+                top: 1rem;
+            }
+        }
+
+        /* 5. CONTACT SECTION */
+        .contact {
+            text-align: center;
+            align-items: center;
+        }
+
+        .contact-cta {
+            font-family: var(--font-hero);
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+            line-height: 1.5;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .contact-cta span {
+            color: var(--accent-color);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 3.5rem;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2px solid rgba(245, 197, 66, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-link-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-link:hover .contact-link-icon {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(245, 197, 66, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(245, 197, 66, 0.2);
+        }
+
+        .contact-link:hover .contact-link-icon svg {
+            transform: scale(1.15);
+        }
+
+        .contact-link:hover .contact-link-label {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid rgba(245, 240, 232, 0.1);
+            opacity: 0.6;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1024px) {
+            .about-container {
+                gap: 3rem;
+            }
+
+            .about-quote {
+                font-size: 3rem;
+            }
+
+            .project-card {
+                aspect-ratio: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            * {
+                cursor: auto;
+            }
+
+            /* Disable custom cursor on mobile */
+            .cursor-dot,
+            .cursor-circle {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
+            .navbar.scrolled {
+                padding: 1rem 2rem;
+            }
+
+            .hero-title {
+                font-size: 18vw;
+            }
+
+            .hero-title .offset {
+                margin-left: 0;
+            }
+
+            .hero-profession {
+                margin-left: 0;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .badge-vertical {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-progress {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 2.5rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::after {
+                left: -7px !important;
+            }
+
+            .contact-cta {
+                font-size: 14vw;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .scroll-indicator {
+                right: 2rem;
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .loading-screen.hidden {
+            transform: translateY(-100vh);
+        }
+
+        .loading-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .loading-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .loading-logo {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.4));
+            animation: pulse-logo 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-logo {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.4));
+            }
+
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 24px rgba(255, 184, 0, 0.7));
+            }
+        }
+
+        .loading-text {
+            color: var(--accent-color);
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: blink-text 2s infinite ease-in-out;
+        }
+
+        @keyframes blink-text {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .loading-image {
+            height: 120px;
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            /* Membantu gambar menyatu dengan background gelap */
+            filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.4));
+            animation: pulse-logo 2.5s infinite ease-in-out;
+        }
+
+        /* ===== GALERI DOKUMENTASI ===== */
+        .galeri-section {
+            padding: 8rem 4rem;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== VIDEO PRAKTIK ===== */
+        .video-section {
+            padding: 2rem 4rem 8rem 4rem;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 184, 0, 0.1);
+            background: var(--surface-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            width: 100%;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .galeri-subtitle {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-weight: 500;
+        }
+
+        .galeri-carousel {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding-bottom: 2rem;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* Custom scrollbar for carousel */
+        .galeri-carousel::-webkit-scrollbar {
+            height: 10px;
+        }
+        .galeri-carousel::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 5px;
+        }
+        .galeri-carousel::-webkit-scrollbar-thumb {
+            background: rgba(245, 197, 66, 0.5);
+            border-radius: 5px;
+        }
+        .galeri-carousel::-webkit-scrollbar-thumb:hover {
+            background: rgba(245, 197, 66, 0.8);
+        }
+
+        .galeri-item {
+            flex: 0 0 85%;
+            max-width: 800px;
+            scroll-snap-align: center;
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            background: rgba(16, 42, 74, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+        }
+
+        .galeri-item:hover {
+            transform: scale(1.025);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.7);
+            border-color: rgba(255, 184, 0, 0.35);
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+
+        .galeri-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .galeri-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(11, 30, 54, 0.97) 0%,
+                rgba(11, 30, 54, 0.3) 50%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.8rem;
+        }
+
+        .galeri-item:hover .galeri-overlay {
+            opacity: 1;
+        }
+
+        .galeri-caption-title {
+            font-family: var(--font-hero);
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+            transform: translateY(8px);
+            transition: transform 0.4s ease;
+        }
+
+        .galeri-item:hover .galeri-caption-title {
+            transform: translateY(0);
+        }
+
+        .galeri-caption {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: rgba(245, 240, 232, 0.65);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transform: translateY(8px);
+            transition: transform 0.4s ease 0.05s;
+        }
+
+        .galeri-item:hover .galeri-caption {
+            transform: translateY(0);
+        }
+
+        /* Zoom icon badge */
+        .galeri-zoom-badge {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 184, 0, 0.15);
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .galeri-item:hover .galeri-zoom-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 12, 25, 0.97);
+            z-index: 9000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-img-wrap {
+            position: relative;
+            max-width: 88vw;
+            max-height: 82vh;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
+            display: block;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.8rem;
+            right: 2rem;
+            background: rgba(245, 240, 232, 0.08);
+            border: 1px solid rgba(245, 240, 232, 0.15);
+            color: var(--text-color);
+            font-size: 1.4rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 184, 0, 0.15);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 184, 0, 0.08);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            color: var(--accent-color);
+            font-size: 2rem;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 184, 0, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 184, 0, 0.2);
+        }
+
+        .lightbox-prev { left: 1.5rem; }
+        .lightbox-next { right: 1.5rem; }
+
+        .lightbox-caption-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(5, 12, 25, 0.95), transparent);
+            text-align: center;
+        }
+
+        .lightbox-caption-title {
+            font-family: var(--font-hero);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .lightbox-caption-desc {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.5);
+            letter-spacing: 1.5px;
+        }
+
+        .lightbox-counter {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: rgba(245, 240, 232, 0.4);
+            letter-spacing: 3px;
+            background: rgba(255,255,255,0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Hero Layout Styles */
+        .hero-content-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            z-index: 2;
+            gap: 4rem;
+        }
+
+        .hero-left-content {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .hero-right-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-profile-card {
+            position: relative;
+            max-width: 380px;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 184, 0, 0.25);
+            background-color: rgba(11, 30, 54, 0.5);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .hero-profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(255, 184, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 184, 0, 0.6);
+        }
+
+        .hero-profile-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-profile-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-profile-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 30, 54, 0.4) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Galeri Carousel Styles */
+        .galeri-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+        .galeri-carousel::-webkit-scrollbar { display: none; }
+        .galeri-item {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+        }
+
+        @media (max-width: 1024px) {
+            .kompetensi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content-wrapper {
+                flex-direction: column-reverse;
+                gap: 3rem;
+            }
+            .hero-left-content {
+                text-align: center;
+                align-items: center;
+            }
+            .model-guru-section { padding: 4rem 1.5rem; }
+            .kompetensi-grid { grid-template-columns: 1fr; }
+            .misi-container { padding: 2rem; }
+            .misi-item { flex-direction: column; text-align: center; align-items: center; }
+            .galeri-section { padding: 6rem 1.5rem; }
+            .video-section { padding: 2rem 1.5rem 6rem 1.5rem; }
+            .lightbox-nav { width: 40px; height: 40px; font-size: 1.5rem; }
+            .lightbox-prev { left: 0.5rem; }
+            .lightbox-next { right: 0.5rem; }
+            .timeline-item:nth-child(odd) .cert-arrow-btn,
+            .timeline-item:nth-child(even) .cert-arrow-btn {
+                left: auto;
+                right: 0;
+            }
+        }
+        
+        /* Certificate Dialog */
+        .cert-arrow-btn {
+            position: absolute;
+            top: 2.2rem;
+            width: 32px;
+            height: 32px;
+            background: var(--accent-color);
+            color: #111;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 0 10px rgba(255, 184, 0, 0.4);
+        }
+        .cert-arrow-btn:hover {
+            transform: scale(1.15);
+            background: #fff;
+        }
+        .timeline-item:nth-child(odd) .cert-arrow-btn {
+            right: -45px;
+        }
+        .timeline-item:nth-child(even) .cert-arrow-btn {
+            left: -45px;
+        }
+
+        .cert-dialog-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .cert-dialog-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .cert-dialog-content {
+            background: rgba(11, 30, 54, 0.95);
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s;
+        }
+        .cert-dialog-overlay.active .cert-dialog-content {
+            transform: scale(1);
+        }
+        .cert-dialog-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .cert-dialog-close:hover {
+            color: var(--accent-color);
+        }
+        .cert-dialog-title {
+            color: var(--accent-color);
+            font-family: var(--font-hero);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .cert-item {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .cert-item:last-child {
+            margin-bottom: 0;
+        }
+        .cert-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.02);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: var(--font-mono);
+        }
+        .cert-item h4 {
+            color: #fff;
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .cert-item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-circle"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#hero" class="nav-brand">
+            <img src="images/Our_Work2.png" alt="Our Work"
+                style="height: 54px; width: auto; object-fit: contain; mix-blend-mode: screen;">
+            <img src="images/unnamed.png" alt="Logo Universitas Sarjanawiyata Tamansiswa" class="brand-logo">
+        </a>
+        <div class="nav-links mono-text">
+            <a href="#hero">Beranda</a>
+            <div class="nav-item">
+                <a href="#refleksi-akhir" class="dropdown-toggle">Refleksi Akhir &#9662;</a>
+                <div class="dropdown-menu">
+                    <a href="#pembelajaran">Pembelajaran</a>
+                    <a href="#tantangan">Tantangan</a>
+                    <a href="#umpan-balik">Umpan Balik</a>
+                </div>
+            </div>
+            <a href="#filosofi-mengajar">Filosofi Mengajar</a>
+            <a href="#contact">Kontak</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav">
+        <a href="#hero" class="mobile-link">BERANDA</a>
+        <div class="mobile-item">
+            <span class="mobile-dropdown-toggle">REFLEKSI AKHIR <span class="arrow">&#9662;</span></span>
+            <div class="mobile-dropdown-menu">
+                <a href="#pembelajaran" class="mobile-link">Pembelajaran</a>
+                <a href="#tantangan" class="mobile-link">Tantangan</a>
+                <a href="#umpan-balik" class="mobile-link">Umpan-Balik</a>
+            </div>
+        </div>
+        <a href="#filosofi-mengajar" class="mobile-link">FILOSOFI MENGAJAR</a>
+        <a href="#contact" class="mobile-link">KONTAK</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content-wrapper">
+                <div class="hero-left-content fade-up delay-1">
+                    <p style="font-family: var(--font-mono, monospace); font-size: 0.9rem; color: var(--accent-color); opacity: 0.8; margin-bottom: 0.5rem; letter-spacing: 2px;">Halaman E-Portofolio 2<br>PPG PRAJABATAN 2025-2026</p>
+                    <h1 style="font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1.1; font-weight: 700; margin: 0; font-family: 'Dancing Script', cursive;">
+                        <span style="color: #F5F0E8; display: block;">Eka Sri</span>
+                        <span style="color: var(--accent-color); display: block;">Darma</span>
+                    </h1>
+                    <p style="font-family: var(--font-mono, monospace); font-size: 0.9rem; color: var(--accent-color); opacity: 0.8; margin-top: 0.5rem; letter-spacing: 2px;">NIM 20250843912</p>
+                    <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.8; font-weight: 300; text-align: justify; opacity: 0.9;">
+                        E-Portfolio 2 ini menjadi ruang refleksi perjalanan belajar dan praktik mengajar selama PPL Terbimbing di SMK Negeri 2 Depok Sleman sebagai proses pengembangan diri menuju guru profesional di bidang Teknik Pemesinan.
+                    </p>
+                </div>
+
+                <div class="hero-right-content fade-up delay-2">
+                    <div class="hero-profile-card">
+                        <img src="Foto Profil/Foto Profil.png" alt="Foto Profil">
+                    </div>
+                </div>
+            </div>
+
+            <div class="marquee-wrapper fade-up delay-3">
+                <div class="marquee">
+                    <span>Mahasiswa PPG Calon Guru</span>
+                    <span>&bull;</span>
+                    <span>Pendidikan Teknik Mesin</span>
+                    <span>&bull;</span>
+                    <span>Mahasiswa PPG Calon Guru</span>
+                    <span>&bull;</span>
+                    <span>Pendidikan Teknik Mesin</span>
+                    <span>&bull;</span>
+                    <span>Mahasiswa PPG Calon Guru</span>
+                    <span>&bull;</span>
+                    <span>Pendidikan Teknik Mesin</span>
+                    <span>&bull;</span>
+                </div>
+            </div>
+
+            
+        </section>
+
+        <!-- About Section -->
+        <style>
+            .about-container { grid-template-columns: 1fr 2fr; align-items: start; gap: 4rem; }
+            .about-right { display: block; }
+            
+            /* Sticky Note Style */
+            .sticky-wrapper {
+                position: relative;
+                width: 100%;
+                max-width: 320px;
+                margin: 1rem auto;
+                perspective: 1000px;
+            }
+            .sticky-note {
+                position: relative;
+                background: linear-gradient(135deg, #fff9b0 0%, #f9e25d 100%);
+                padding: 3rem 2.5rem 3rem;
+                color: #1a1a1a;
+                font-family: 'Dancing Script', cursive;
+                font-size: 1.9rem;
+                line-height: 1.5;
+                text-align: center;
+                border-radius: 2px 2px 40px 2px / 2px 2px 8px 2px;
+                box-shadow: 
+                    -2px 5px 10px rgba(0,0,0,0.15), 
+                    inset 0 -15px 15px rgba(0,0,0,0.05);
+                transform: rotate(-3deg);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .sticky-note:hover {
+                transform: rotate(0deg) scale(1.02);
+                box-shadow: 
+                    0 8px 15px rgba(0,0,0,0.2), 
+                    inset 0 -15px 15px rgba(0,0,0,0.02);
+            }
+            /* Curl shadow */
+            .sticky-note::before {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                right: 15px;
+                width: 70%;
+                height: 20px;
+                background: transparent;
+                box-shadow: 0 15px 12px rgba(0,0,0,0.4);
+                transform: rotate(4deg);
+                z-index: -1;
+                border-radius: 50%;
+            }
+            
+            /* 3D Pin */
+            .sticky-pin {
+                position: absolute;
+                top: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 24px;
+                height: 24px;
+                background: radial-gradient(circle at 35% 35%, #ff5e5e 0%, #d40000 60%, #8a0000 100%);
+                border-radius: 50%;
+                box-shadow: 2px 4px 5px rgba(0,0,0,0.4), inset -2px -2px 4px rgba(0,0,0,0.3);
+                z-index: 5;
+            }
+            .sticky-pin::before {
+                content: '';
+                position: absolute;
+                top: 4px;
+                left: 5px;
+                width: 7px;
+                height: 7px;
+                background: rgba(255,255,255,0.8);
+                border-radius: 50%;
+            }
+            .sticky-pin::after {
+                content: '';
+                position: absolute;
+                top: 18px;
+                left: 9px;
+                width: 2px;
+                height: 20px;
+                background: linear-gradient(to right, #999, #ccc, #666);
+                transform: rotate(-15deg);
+                z-index: -1;
+                box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+                border-radius: 0 0 2px 2px;
+            }
+
+            @media (max-width: 1024px) {
+                .about-container { grid-template-columns: 1fr; gap: 3rem; }
+                .sticky-note { font-size: 1.7rem; padding: 2.5rem 2rem 2.5rem; }
+            }
+        </style>
+        <style>
+        .refleksi-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .refleksi-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .refleksi-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        </style>
+        <!-- Refleksi & Filosofi Section -->
+        <section id="refleksi-dan-filosofi" class="refleksi-filosofi-section">
+            
+            <!-- Refleksi Akhir -->
+            <div id="refleksi-akhir" style="scroll-margin-top: 100px; margin-bottom: 8rem;">
+                <div class="refleksi-intro fade-up">
+                    <h2 class="section-header" style="text-align: center;">Refleksi Akhir</h2>
+                    <p style="color: var(--accent-color); font-family: var(--font-mono); font-size: 1.2rem; margin-bottom: 3rem; letter-spacing: 2px; text-transform: uppercase; text-align: center;">Praktik Pengalaman Lapangan Terbimbing</p>
+                </div>
+                
+                <div class="refleksi-grid">
+                    <div id="pembelajaran" class="refleksi-card fade-up delay-1">
+                        <div class="refleksi-num">01</div>
+                        <h3 class="refleksi-card-title">Pembelajaran Selama PPL Terbimbing</h3>
+                        <p class="refleksi-text">Selama tahapan PPL Terbimbing, saya belajar mengintegrasikan teori pedagogik dengan dinamika nyata di bengkel Teknik Pemesinan. Saya belajar merancang modul ajar berdiferensiasi yang memfasilitasi kebutuhan belajar siswa yang beragam, mengelola manajemen keselamatan kerja (K3) di bengkel secara praktis, serta melakukan asesmen formatif yang autentik pada pembelajaran praktik bubut dan frais. Proses ini membekali saya keterampilan untuk tidak hanya mentransfer pengetahuan teknik, melainkan menumbuhkan karakter kerja industri (work ethic) kepada siswa.</p>
+                        <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin yang Saya Pelajari selama PPL Terbimbing berlangsung:</p>
+                        <div class="refleksi-btn-group">
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Adaptasi lingkungan sekolah', 'Pada tahap awal PPL Terbimbing, saya belajar beradaptasi dengan lingkungan sekolah, baik dari segi budaya kerja, tata tertib, maupun sistem pembelajaran yang diterapkan di SMK Negeri 2 Depok Sleman. Saya memahami pentingnya sikap profesional, kedisiplinan, dan kemampuan bekerja sama dengan guru, tenaga kependidikan, serta peserta didik. Adaptasi ini membantu saya memahami kondisi nyata dunia pendidikan vokasional dan peran guru dalam lingkungan sekolah.')">Adaptasi lingkungan sekolah</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Karakteristik siswa SMK', 'Selama kegiatan observasi dan praktik mengajar, saya mempelajari bahwa peserta didik SMK terutama Kelas XI Teknik Pemesinan A memiliki karakteristik yang beragam, terutama dalam kemampuan akademik dan keterampilan praktik. Sebagian siswa lebih cepat memahami pembelajaran melalui praktik langsung dibandingkan teori. Oleh karena itu, guru perlu menggunakan pendekatan pembelajaran yang kontekstual, aplikatif, dan berpusat pada peserta didik agar pembelajaran lebih mudah dipahami dan bermakna.')">Karakteristik siswa SMK</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Penyusunan modul ajar', 'Saya memperoleh pengalaman dalam menyusun modul ajar berbasis Kurikulum Merdeka yang disesuaikan dengan kebutuhan peserta didik dan karakteristik pembelajaran vokasional. Dalam proses ini, saya belajar menyusun tujuan pembelajaran, aktivitas pembelajaran, asesmen, serta media pembelajaran yang mendukung keterampilan berpikir kritis dan praktik kerja industri.')">Penyusunan modul ajar</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan kelas dan bengkel', 'Melalui praktik mengajar terbimbing, saya belajar pentingnya pengelolaan kelas dan bengkel secara efektif untuk menciptakan suasana belajar yang aman, tertib, dan kondusif. Dalam pembelajaran praktik, guru tidak hanya mengatur aktivitas belajar, tetapi juga memastikan penerapan keselamatan dan kesehatan kerja (K3) selama proses praktik berlangsung.')">Pengelolaan kelas dan bengkel</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Penerapan Deep Learning, PBL dan PjBL', 'Saya memahami bahwa pendekatan Deep Learning, Problem Based Learning (PBL) dan Project Based Learning (PjBL) sangat sesuai diterapkan pada pembelajaran Teknik Pemesinan karena mendorong siswa belajar melalui pengalaman nyata dan penyelesaian masalah. Peserta didik tidak hanya memahami teori, tetapi juga mampu menerapkan pengetahuan dalam praktik serta melakukan refleksi terhadap hasil pekerjaannya.')">Penerapan Deep Learning, PBL dan PjBL</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pentingnya komunikasi guru &amp; siswa', 'Selama PPL, saya menyadari bahwa komunikasi yang baik antara guru dan siswa sangat memengaruhi keberhasilan pembelajaran. Guru perlu memberikan arahan yang jelas, motivasi, serta umpan balik yang membangun agar siswa merasa nyaman, percaya diri, dan aktif dalam proses belajar.')">Pentingnya komunikasi guru &amp; siswa</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengalaman asesmen pembelajaran', 'Saya belajar melaksanakan asesmen diagnostik, formatif, dan sumatif untuk mengetahui perkembangan belajar peserta didik. Asesmen tidak hanya digunakan untuk menilai hasil akhir, tetapi juga sebagai bahan refleksi untuk memperbaiki strategi pembelajaran dan membantu siswa memahami kekurangan yang perlu ditingkatkan.')">Pengalaman asesmen pembelajaran</button>
+                        </div>
+                    </div>
+                    <div id="tantangan" class="refleksi-card fade-up delay-2">
+                        <div class="refleksi-num">02</div>
+                        <h3 class="refleksi-card-title">Tantangan & Solusi Praktik Bengkel</h3>
+                        <p class="refleksi-text">Tantangan terbesar adalah menjaga fokus dan motivasi siswa saat pembelajaran teori mesin di kelas sebelum memulai praktik bengkel, serta keterbatasan alat praktik yang menuntut manajemen waktu yang sangat ketat. Solusi yang saya terapkan adalah mengimplementasikan metode <em>Project-Based Learning</em> (PjBL) dengan media interaktif 3D CAD/CAM sebelum masuk ke bengkel. Saya juga merancang sistem rotasi kelompok kerja (<em>station rotation</em>) yang efektif sehingga setiap siswa mendapatkan waktu interaksi yang adil dengan mesin frais dan bubut tanpa ada waktu tunggu yang terbuang sia-sia.</p>
+                        <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin Pengalaman Menantang Selama PPL dan Solusinya:</p>
+                        <div class="refleksi-btn-group">
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Siswa pasif', 'Salah satu tantangan yang saya hadapi adalah terdapat beberapa siswa yang masih pasif saat pembelajaran berlangsung. Untuk mengatasi hal tersebut, saya mencoba menggunakan metode diskusi kelompok, tanya jawab interaktif, dan pendekatan personal agar siswa lebih percaya diri dalam menyampaikan pendapat serta terlibat aktif selama pembelajaran.')">Siswa pasif</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Perbedaan kemampuan praktik', 'Kemampuan praktik peserta didik yang berbeda-beda menjadi tantangan dalam pembelajaran di bengkel. Sebagian siswa mampu bekerja mandiri, sementara yang lain masih memerlukan bimbingan intensif. Solusi yang saya lakukan adalah menerapkan pembelajaran kelompok dan memberikan scaffolding secara bertahap agar seluruh siswa tetap dapat mengikuti proses pembelajaran dengan baik.')">Perbedaan kemampuan praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan waktu praktik', 'Pembelajaran praktik membutuhkan waktu yang cukup panjang, terutama saat proses setting alat dan penggunaan mesin secara bergantian. Untuk mengatasi keterbatasan waktu, saya membuat pembagian kelompok kerja dan jadwal rotasi praktik sehingga seluruh siswa tetap mendapatkan kesempatan praktik secara optimal.')">Pengelolaan waktu praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Keterbatasan alat', 'Jumlah alat dan mesin praktik yang terbatas menjadi kendala dalam pelaksanaan pembelajaran. Untuk mengatasinya, saya menerapkan sistem kerja kelompok dan memanfaatkan demonstrasi awal sebelum praktik mandiri agar penggunaan alat menjadi lebih efektif dan efisien.')">Keterbatasan alat</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Kesulitan menjelaskan konsep perhitungan', 'Beberapa siswa mengalami kesulitan memahami konsep perhitungan parameter pemotongan dan pembagian sudut. Untuk membantu siswa memahami materi, saya menggunakan contoh perhitungan sederhana, media visual, demonstrasi langsung, serta mengaitkan materi dengan praktik nyata di bengkel sehingga konsep lebih mudah dipahami.')">Kesulitan menjelaskan konsep perhitungan</button>
+                        </div>
+                    </div>
+                    <div id="umpan-balik" class="refleksi-card fade-up delay-3">
+                        <div class="refleksi-num">03</div>
+                        <h3 class="refleksi-card-title">Umpan Balik & Perbaikan untuk PPL Mandiri</h3>
+                        <p class="refleksi-text">Guru pamong dan dosen pembimbing memberikan masukan berharga terkait manajemen kelas saat transisi dari teori ke bengkel. Saya disarankan untuk lebih memperketat instruksi keselamatan kerja (K3) di awal sesi dan memberikan umpan balik langsung (<em>immediate feedback</em>) secara lebih terstruktur saat mendampingi siswa di setiap stasiun mesin. Saran ini menjadi fondasi penting bagi saya untuk meningkatkan kemandirian mengajar dan efisiensi pengelolaan bengkel pada tahap PPL Mandiri mendatang.</p>
+                        <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin Umpan Balik yang berisi saran dari Guru Pamong dan Dosen Pembimbing:</p>
+                        <div class="refleksi-btn-group">
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Pengelolaan Kelas saat Praktik', 'Berdasarkan hasil refleksi dan masukan dari dosen pembimbing serta guru pamong, saya perlu meningkatkan kemampuan dalam mengelola kelas dan bengkel praktik agar pembelajaran lebih tertib, efektif, dan kondusif. Pengelolaan yang baik sangat penting untuk menjaga fokus siswa dan memastikan keselamatan kerja selama praktik berlangsung.')">Meningkatkan Pengelolaan Kelas saat Praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperjelas Instruksi Kerja', 'Saya memperoleh masukan agar memberikan instruksi kerja yang lebih jelas dan sistematis sebelum praktik dimulai. Instruksi yang baik membantu siswa memahami langkah kerja, mengurangi kesalahan praktik, dan meningkatkan efisiensi proses pembelajaran.')">Memperjelas Instruksi Kerja</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperkuat Asesmen Autentik', 'Umpan balik yang saya terima juga menekankan pentingnya penggunaan asesmen autentik yang tidak hanya menilai hasil akhir, tetapi juga proses kerja, sikap, keterampilan, dan kemampuan berpikir kritis peserta didik selama pembelajaran praktik.')">Memperkuat Asesmen Autentik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Komunikasi Reflektif dengan Siswa', 'Saya diarahkan untuk lebih sering melakukan komunikasi reflektif dengan siswa melalui diskusi dan umpan balik setelah pembelajaran. Hal ini bertujuan agar siswa mampu mengevaluasi proses belajarnya sendiri serta meningkatkan motivasi dan rasa tanggung jawab dalam belajar.')">Meningkatkan Komunikasi Reflektif dengan Siswa</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Mengoptimalkan Penggunaan Media Pembelajaran', 'Penggunaan media pembelajaran yang variatif seperti video praktik, gambar kerja, dan demonstrasi langsung dinilai dapat membantu siswa memahami materi dengan lebih mudah. Oleh karena itu, saya perlu lebih mengoptimalkan penggunaan media pembelajaran agar proses belajar menjadi lebih menarik dan interaktif.')">Mengoptimalkan Penggunaan Media Pembelajaran</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filosofi Mengajar -->
+            <div id="filosofi-mengajar" style="scroll-margin-top: 100px;">
+                <div class="refleksi-intro fade-up">
+                    <h2 class="section-header" style="text-align: center;">Filosofi Mengajar</h2>
+                    <p style="color: var(--accent-color); font-family: var(--font-mono); font-size: 1.2rem; margin-bottom: 4rem; letter-spacing: 2px; text-transform: uppercase; text-align: center;">Ideologi & Prinsip Keguruan</p>
+                </div>
+                
+                <div class="filosofi-content-card fade-up delay-1">
+                    <div class="filosofi-quote-mark">â€œ</div>
+                    <div class="filosofi-body-text">
+                        <p>Filosofi mengajar saya berakar pada pemikiran <span style="color: var(--accent-color);">Ki Hadjar Dewantara</span>, khususnya asas <em>menuntun</em> kekuatan kodrat yang ada pada anak-anak agar mereka dapat mencapai keselamatan dan kebahagiaan yang setinggi-tingginya baik sebagai manusia maupun anggota masyarakat. Dalam konteks pendidikan vokasi Teknik Pemesinan, saya memandang proses belajar bukan sekadar mentransfer keterampilan teknis mengoperasikan mesin, melainkan proses memanusiakan hubungan kerja. Guru berperan sebagai fasilitator yang berdiri di depan memberikan teladan (<em>ing ngarsa sung tuladha</em>), di tengah membangun karsa (<em>ing madya mangun karsa</em>), dan di belakang memberikan dorongan moral serta spiritual (<em>tut wuri handayani</em>) guna menumbuhkan kemandirian belajar siswa di lingkungan bengkel yang dinamis.</p>
+                        
+                        <p>Mengacu pada teori konstruktivisme sosial oleh <span style="color: var(--accent-color);">Vygotsky</span>, saya meyakini bahwa pembelajaran efektif terjadi ketika siswa berkolaborasi memecahkan masalah riil. Di era industri modern, kompetensi teknis (<em>hard skills</em>) harus berjalan selaras dengan karakter kerja (<em>soft skills</em>). Oleh karena itu, saya mengintegrasikan prinsip-prinsip <span style="color: var(--accent-color);">Charles Prosser</span> tentang pendidikan vokasi, di mana lingkungan belajar harus mereplikasi lingkungan kerja yang sebenarnya (dunia industri). Melalui pendekatan <em>Project-Based Learning</em> (PjBL), siswa tidak hanya belajar memotong logam dengan presisi, tetapi juga dilatih berkomunikasi, bekerja sama dalam tim, serta mengelola keselamatan kerja secara disiplin dan penuh tanggung jawab.</p>
+                        
+                        <p>Sebagai penutup, bagi saya, menjadi guru vokasional profesional adalah panggilan untuk membentuk masa depan industri Indonesia melalui penyiapan sumber daya manusia yang unggul secara kompetensi dan berintegritas secara moral. Filosofi ini menjadi komitmen ideologis saya selama perjalanan karier keguruan. Saya percaya bahwa setiap mesin memiliki presisi tersendiri, demikian pula dengan setiap anak didik yang memiliki potensi uniknya masing-masing. Tugas mulia saya adalah membimbing mereka agar mampu menemukan presisi terbaik dalam hidup mereka, berkontribusi secara nyata bagi masyarakat, serta menjadi pembelajar sepanjang hayat yang adaptif terhadap perkembangan teknologi manufaktur global.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <h2 class="contact-cta fade-up">Terima kasih telah mengunjungi ruang belajar saya.<br><span>Mari berkolaborasi untuk pendidikan Indonesia yang lebih baik.</span></h2>
+            <div class="contact-links fade-up delay-1">
+                <!-- Email -->
+                <a href="mailto:darma1yy@gmail.com" class="contact-link" aria-label="Kirim Email">
+                    <div class="contact-link-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <span class="contact-link-label">EMAIL</span>
+                </a>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Buka LinkedIn">
+                    <div class="contact-link-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </div>
+                    <span class="contact-link-label">LINKEDIN</span>
+                </a>
+                <!-- Instagram -->
+                <a href="https://ig.me/m/ekaxd_" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Direct Message Instagram">
+                    <div class="contact-link-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                    </div>
+                    <span class="contact-link-label">INSTAGRAM</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Premium Analisis Modal Popup -->
+        <div class="analisis-modal-overlay" id="analisis-modal" role="dialog" aria-modal="true" aria-label="Analisis Artefak">
+            <div class="analisis-modal">
+                <div class="analisis-modal-header">
+                    <div class="analisis-modal-title-area">
+                        <span class="analisis-modal-tag" id="analisis-tag">ANALISIS ARTEFAK</span>
+                        <h2 class="analisis-modal-title" id="analisis-title">Analisis RPP</h2>
+                    </div>
+                    <button class="analisis-modal-close" id="analisis-modal-close" onclick="closeAnalisisModal()" aria-label="Tutup">&times;</button>
+                </div>
+                <div class="analisis-modal-body" id="analisis-body">
+                    <!-- Content injected dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mono-text">
+        <p>&copy; 2026 Eka Sri Darma. E-Portofolio PPG Calon Guru.</p>
+    </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+        function openRefleksiModal(title, text) {
+            document.getElementById('analisis-tag').textContent = "DETAIL REFLEKSI";
+            document.getElementById('analisis-title').textContent = title;
+            document.getElementById('analisis-body').innerHTML = '<p style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.8; color: rgba(245, 240, 232, 0.9); text-align: justify;">' + text + '</p>';
+            document.getElementById('analisis-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        // 1. Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorCircle = document.querySelector('.cursor-circle');
+
+        // Only run on non-touch devices
+        if (window.matchMedia("(pointer: fine)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Animate circle with delay
+                cursorCircle.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 300, fill: "forwards" });
+            });
+
+            // Hover effect on interactable elements
+            const interactables = document.querySelectorAll('a, button, .project-card, .artefak-card, .skill-tag');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorCircle.style.width = '60px';
+                    cursorCircle.style.height = '60px';
+                    cursorCircle.style.backgroundColor = 'rgba(255, 184, 0, 0.1)';
+                    cursorCircle.style.borderColor = 'transparent';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorCircle.style.width = '40px';
+                    cursorCircle.style.height = '40px';
+                    cursorCircle.style.backgroundColor = 'transparent';
+                    cursorCircle.style.borderColor = '#F5F0E8';
+                });
+            });
+        }
+
+        // 2. Intersection Observer for Fade-up Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: stop observing once visible
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // 3. Navbar Scroll Effect & Scroll Spy
+        const navbar = document.querySelector('.navbar');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links > a, .nav-links .nav-item > a.dropdown-toggle');
+
+        window.addEventListener('scroll', () => {
+            // Navbar bg
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll Spy
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 4. Timeline Draw Effect
+        const timelineProgress = document.querySelector('.timeline-progress');
+        if (timelineProgress) {
+            window.addEventListener('scroll', () => {
+                const timeline = document.querySelector('.timeline');
+                const rect = timeline.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+
+                if (rect.top < viewHeight && rect.bottom > 0) {
+                    let scrollPercent = (viewHeight - rect.top) / (rect.height + viewHeight / 2);
+                    scrollPercent = Math.max(0, Math.min(1, scrollPercent));
+                    timelineProgress.style.height = `${scrollPercent * 100}%`;
+                }
+            });
+        }
+
+        // 5. Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+
+            // Animate hamburger lines
+            const spans = hamburger.querySelectorAll('span');
+            if (mobileNav.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu when link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // 6. Mobile Dropdown Accordion
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                const parentItem = toggle.parentElement;
+
+                // Close other open dropdowns (accordion effect)
+                document.querySelectorAll('.mobile-item.open').forEach(item => {
+                    if (item !== parentItem) {
+                        item.classList.remove('open');
+                    }
+                });
+
+                parentItem.classList.toggle('open');
+            });
+        });
+
+    </script>
+
+    <!-- Certificate Dialogs -->
+    <div id="cert-dialog-ust" class="cert-dialog-overlay" onclick="if(event.target===this) closeCertDialog('cert-dialog-ust')">
+        <div class="cert-dialog-content">
+            <button class="cert-dialog-close" onclick="closeCertDialog('cert-dialog-ust')">&times;</button>
+            <h3 class="cert-dialog-title">Universitas Sarjanawiyata Tamansiswa</h3>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Universitas%20Sarjanawiyata%20Tamansiswa/Sertifikat%20Diklat%20Anti%20Bullying%202026%20Eka%20Sri%20Darma.jpg" alt="Sertifikat Diklat Anti Bullying">
+                <h4>Sertifikat Diklat Anti Bullying</h4>
+                <p>Peserta Diklat Anti Bullying dan Penanganan Kekerasan Seksual bagi Mahasiswa PPG Calon Guru Gel.1, yang dilaksanakan pada Selasa, 5 Mei 2026.</p>
+            </div>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Universitas%20Sarjanawiyata%20Tamansiswa/Sertifikat%20Diklat%20Wasbin%202026%20-%20Eka%20Sri%20Darma.jpg" alt="Sertifikat Diklat Wawasan Kebinekaan">
+                <h4>Sertifikat Diklat Wawasan Kebinekaan</h4>
+                <p>Peserta Diklat Wawasan Kebinekaan Global bagi Mahasiswa PPG Calon Guru Gel.1, yang dilaksanakan pada Selasa, 9 Mei 2026.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="cert-dialog-enerc" class="cert-dialog-overlay" onclick="if(event.target===this) closeCertDialog('cert-dialog-enerc')">
+        <div class="cert-dialog-content">
+            <button class="cert-dialog-close" onclick="closeCertDialog('cert-dialog-enerc')">&times;</button>
+            <h3 class="cert-dialog-title">Engineering Research Club</h3>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Engineering%20Research%20Club/Staff%20EneRC%20Kabinet%20Akselerasi.jpg" alt="Staff EneRC Kabinet Akselerasi">
+                <h4>Staff EneRC Kabinet Akselerasi</h4>
+                <p>Salah satu Staff Information Communication Bureau di Engineering Research Club (EneRC) Kabinet AKSELERASI periode 2019-2020.</p>
+            </div>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Engineering%20Research%20Club/Juara%202%20Lomba%20Karya%20Tulis%20Ilmiah%20tingkat%20Nasional%20(LKTIN).jpg" alt="Juara 2 Lomba Karya Tulis Ilmiah tingkat Nasional (LKTIN)">
+                <h4>Juara 2 Lomba Karya Tulis Ilmiah tingkat Nasional (LKTIN)</h4>
+                <p>Juara 2 Lomba Karya Tulis Ilmiah Nasiona (LKTIN) Dengan Tema "Inovasi dan Kreatifitas Generasi Muda Dalam Mengembangkan Ilmu Pengetahuan dan Teknologi Untuk Mewujudka Indonesia Emas 2045".</p>
+            </div>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Engineering%20Research%20Club/Finalis%2010%20Besar%20Lomba%20Karya%20Tulis%20Ilmiah%20tingkat%20Nasional%20(LKTIN).jpg" alt="Finalis 10 Besar Lomba Karya Tulis Ilmiah tingkat Nasional (LKTIN)">
+                <h4>Finalis 10 Besar Lomba Karya Tulis Ilmiah tingkat Nasional (LKTIN)</h4>
+                <p>Finalis 10 Besar Lomba Karya Tulis Ilmiah Nasional (LKTIN) yang diadakan oleh Himpunan Mahasiswa Kimia (HIMKI) Fakultas Sains dan Teknologi, Universitas Jambi.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="cert-dialog-unnes" class="cert-dialog-overlay" onclick="if(event.target===this) closeCertDialog('cert-dialog-unnes')">
+        <div class="cert-dialog-content">
+            <button class="cert-dialog-close" onclick="closeCertDialog('cert-dialog-unnes')">&times;</button>
+            <h3 class="cert-dialog-title">Universitas Negeri Semarang</h3>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Universitas%20Negeri%20Semarang/Panitia%20Kongres%20Mahasiswa%20Teknik.jpg" alt="Panitia Kongres Mahasiswa Teknik">
+                <h4>Panitia Kongres Mahasiswa Teknik</h4>
+                <p>Panitia Kongres Mahasiswa Teknik (KEMASTE) dengan tema "Revitalisasi Peran dan Fungsi Mahasiswa Guna Meningkatkan Organisasi Fakultas Teknik yang Berintegritas" oleh DPM FT UNNES.</p>
+            </div>
+            
+            <div class="cert-item">
+                <img class="cert-img" src="Sertifikat/Universitas%20Negeri%20Semarang/Peserta%20Training%20Legislatif%20Dasar%20oleh%20Dewan%20Perwakilan%20Mahasiswa.jpg" alt="Training Legislatif Dasar oleh Dewan Perwakilan Mahasiswa FT UNNES">
+                <h4>Training Legislatif Dasar oleh Dewan Perwakilan Mahasiswa FT UNNES</h4>
+                <p>Peserta Training Legislatif Dasar oleh DPM FT UNNES dengan Tema "Menciptakan Legislator Berwawasan Demokrasi, Aspiratif, Konservatif, Profesional dan Berintegritas".</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCertDialog(id) {
+            const dialog = document.getElementById(id);
+            if (dialog) {
+                dialog.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeCertDialog(id) {
+            const dialog = document.getElementById(id);
+            if (dialog) {
+                dialog.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.cert-dialog-overlay').forEach(modal => {
+                    if(modal.classList.contains('active')) {
+                        closeCertDialog(modal.id);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
