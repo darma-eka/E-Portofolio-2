@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -411,7 +411,7 @@
 
         .marquee-wrapper {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: -1rem;
             left: 0;
             width: 100%;
             overflow: hidden;
@@ -2814,7 +2814,7 @@
         <section id="hero" class="hero">
             <div class="hero-content-wrapper">
                 <div class="hero-left-content fade-up delay-1">
-                    <p style="font-family: var(--font-mono, monospace); font-size: 0.9rem; color: var(--accent-color); opacity: 0.8; margin-bottom: 0.5rem; letter-spacing: 2px;">Halaman E-Portofolio 2<br>PPG PRAJABATAN 2025-2026</p>
+                    <p style="font-family: var(--font-mono, monospace); font-size: 0.9rem; color: var(--accent-color); opacity: 0.8; margin-bottom: 0.5rem; letter-spacing: 2px;">Halaman E-Portofolio 2<br><br>PPG PRAJABATAN 2025-2026</p>
                     <h1 style="font-size: clamp(3rem, 8vw, 4.5rem); line-height: 1.1; font-weight: 700; margin: 0; font-family: 'Dancing Script', cursive;">
                         <span style="color: #F5F0E8; display: block;">Eka Sri</span>
                         <span style="color: var(--accent-color); display: block;">Darma</span>
@@ -2970,6 +2970,82 @@
             border-color: var(--accent-color);
             transform: translateY(-2px);
         }
+
+        /* === Refleksi Modal Cards === */
+        #analisis-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .rm-card {
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            border-left: 4px solid transparent;
+            background: rgba(255, 255, 255, 0.04);
+            transition: transform 0.2s ease;
+        }
+
+        .rm-card:hover {
+            transform: translateX(4px);
+        }
+
+        .rm-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .rm-card-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .rm-card-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .rm-card-text {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: rgba(245, 240, 232, 0.88);
+            text-align: justify;
+            margin: 0;
+        }
+
+        /* Deskripsi — biru tenang */
+        .rm-deskripsi {
+            border-left-color: #4a9eff;
+            background: rgba(74, 158, 255, 0.07);
+        }
+        .rm-deskripsi .rm-card-label { color: #4a9eff; }
+
+        /* Kekuatan — hijau segar */
+        .rm-kekuatan {
+            border-left-color: #4ade80;
+            background: rgba(74, 222, 128, 0.07);
+        }
+        .rm-kekuatan .rm-card-label { color: #4ade80; }
+
+        /* Kelemahan — amber/oranye */
+        .rm-kelemahan {
+            border-left-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.07);
+        }
+        .rm-kelemahan .rm-card-label { color: #f59e0b; }
+
+        /* Rencana Tindak Lanjut — ungu hangat */
+        .rm-rencana {
+            border-left-color: #a78bfa;
+            background: rgba(167, 139, 250, 0.07);
+        }
+        .rm-rencana .rm-card-label { color: #a78bfa; }
         </style>
         <!-- Refleksi & Filosofi Section -->
         <section id="refleksi-dan-filosofi" class="refleksi-filosofi-section">
@@ -2988,13 +3064,13 @@
                         <p class="refleksi-text">Selama tahapan PPL Terbimbing, saya belajar mengintegrasikan teori pedagogik dengan dinamika nyata di bengkel Teknik Pemesinan. Saya belajar merancang modul ajar berdiferensiasi yang memfasilitasi kebutuhan belajar siswa yang beragam, mengelola manajemen keselamatan kerja (K3) di bengkel secara praktis, serta melakukan asesmen formatif yang autentik pada pembelajaran praktik bubut dan frais. Proses ini membekali saya keterampilan untuk tidak hanya mentransfer pengetahuan teknik, melainkan menumbuhkan karakter kerja industri (work ethic) kepada siswa.</p>
                         <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin yang Saya Pelajari selama PPL Terbimbing berlangsung:</p>
                         <div class="refleksi-btn-group">
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Adaptasi lingkungan sekolah', 'Pada tahap awal PPL Terbimbing, saya belajar beradaptasi dengan lingkungan sekolah, baik dari segi budaya kerja, tata tertib, maupun sistem pembelajaran yang diterapkan di SMK Negeri 2 Depok Sleman. Saya memahami pentingnya sikap profesional, kedisiplinan, dan kemampuan bekerja sama dengan guru, tenaga kependidikan, serta peserta didik. Adaptasi ini membantu saya memahami kondisi nyata dunia pendidikan vokasional dan peran guru dalam lingkungan sekolah.')">Adaptasi lingkungan sekolah</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Karakteristik siswa SMK', 'Selama kegiatan observasi dan praktik mengajar, saya mempelajari bahwa peserta didik SMK terutama Kelas XI Teknik Pemesinan A memiliki karakteristik yang beragam, terutama dalam kemampuan akademik dan keterampilan praktik. Sebagian siswa lebih cepat memahami pembelajaran melalui praktik langsung dibandingkan teori. Oleh karena itu, guru perlu menggunakan pendekatan pembelajaran yang kontekstual, aplikatif, dan berpusat pada peserta didik agar pembelajaran lebih mudah dipahami dan bermakna.')">Karakteristik siswa SMK</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Penyusunan modul ajar', 'Saya memperoleh pengalaman dalam menyusun modul ajar berbasis Kurikulum Merdeka yang disesuaikan dengan kebutuhan peserta didik dan karakteristik pembelajaran vokasional. Dalam proses ini, saya belajar menyusun tujuan pembelajaran, aktivitas pembelajaran, asesmen, serta media pembelajaran yang mendukung keterampilan berpikir kritis dan praktik kerja industri.')">Penyusunan modul ajar</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan kelas dan bengkel', 'Melalui praktik mengajar terbimbing, saya belajar pentingnya pengelolaan kelas dan bengkel secara efektif untuk menciptakan suasana belajar yang aman, tertib, dan kondusif. Dalam pembelajaran praktik, guru tidak hanya mengatur aktivitas belajar, tetapi juga memastikan penerapan keselamatan dan kesehatan kerja (K3) selama proses praktik berlangsung.')">Pengelolaan kelas dan bengkel</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Penerapan Deep Learning, PBL dan PjBL', 'Saya memahami bahwa pendekatan Deep Learning, Problem Based Learning (PBL) dan Project Based Learning (PjBL) sangat sesuai diterapkan pada pembelajaran Teknik Pemesinan karena mendorong siswa belajar melalui pengalaman nyata dan penyelesaian masalah. Peserta didik tidak hanya memahami teori, tetapi juga mampu menerapkan pengetahuan dalam praktik serta melakukan refleksi terhadap hasil pekerjaannya.')">Penerapan Deep Learning, PBL dan PjBL</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Pentingnya komunikasi guru &amp; siswa', 'Selama PPL, saya menyadari bahwa komunikasi yang baik antara guru dan siswa sangat memengaruhi keberhasilan pembelajaran. Guru perlu memberikan arahan yang jelas, motivasi, serta umpan balik yang membangun agar siswa merasa nyaman, percaya diri, dan aktif dalam proses belajar.')">Pentingnya komunikasi guru &amp; siswa</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengalaman asesmen pembelajaran', 'Saya belajar melaksanakan asesmen diagnostik, formatif, dan sumatif untuk mengetahui perkembangan belajar peserta didik. Asesmen tidak hanya digunakan untuk menilai hasil akhir, tetapi juga sebagai bahan refleksi untuk memperbaiki strategi pembelajaran dan membantu siswa memahami kekurangan yang perlu ditingkatkan.')">Pengalaman asesmen pembelajaran</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Adaptasi Lingkungan Sekolah', 'Pada tahap awal PPL Terbimbing, saya belajar beradaptasi dengan lingkungan sekolah, baik dari segi budaya kerja, tata tertib, maupun sistem pembelajaran yang diterapkan di SMK. Saya memahami pentingnya sikap profesional, kedisiplinan, dan kemampuan bekerja sama dengan guru, tenaga kependidikan, serta peserta didik. Adaptasi ini membantu saya memahami kondisi nyata dunia pendidikan vokasional dan peran guru dalam lingkungan sekolah.', 'Saya mampu menjalin komunikasi yang baik dengan warga sekolah dan menunjukkan sikap terbuka terhadap budaya kerja yang berlaku.', 'Pada awal pelaksanaan PPL, saya masih memerlukan waktu untuk memahami alur administrasi sekolah dan kebiasaan kerja yang berbeda dengan pengalaman sebelumnya.', 'Saya akan terus meningkatkan kemampuan adaptasi melalui keterlibatan aktif dalam kegiatan sekolah, memperluas komunikasi dengan rekan sejawat, serta mempelajari budaya organisasi sekolah secara lebih mendalam.')">Adaptasi lingkungan sekolah</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Karakteristik Siswa SMK', 'Selama kegiatan observasi dan praktik mengajar, saya mempelajari bahwa peserta didik SMK memiliki karakteristik yang beragam, terutama dalam kemampuan akademik dan keterampilan praktik. Sebagian siswa lebih cepat memahami pembelajaran melalui praktik langsung dibandingkan teori. Oleh karena itu, guru perlu menggunakan pendekatan pembelajaran yang kontekstual, aplikatif, dan berpusat pada peserta didik agar pembelajaran lebih mudah dipahami dan bermakna.', 'Saya mampu mengidentifikasi perbedaan karakteristik siswa dan menyesuaikan pendekatan pembelajaran sesuai kebutuhan mereka.', 'Saya masih perlu meningkatkan kemampuan dalam mengakomodasi seluruh kebutuhan belajar siswa yang sangat beragam dalam satu kelas.', 'Saya akan mempelajari strategi pembelajaran berdiferensiasi dan memperbanyak pengalaman dalam melakukan pemetaan kebutuhan belajar peserta didik.')">Karakteristik siswa SMK</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Penyusunan Modul Ajar', 'Saya memperoleh pengalaman dalam menyusun modul ajar berbasis Kurikulum Merdeka yang disesuaikan dengan kebutuhan peserta didik dan karakteristik pembelajaran vokasional. Dalam proses ini, saya belajar menyusun tujuan pembelajaran, aktivitas pembelajaran, asesmen, serta media pembelajaran yang mendukung keterampilan berpikir kritis dan praktik kerja industri.', 'Saya mampu menyusun modul ajar yang terstruktur dan selaras dengan tujuan pembelajaran serta kebutuhan praktik di bengkel.', 'Saya masih perlu meningkatkan kreativitas dalam mengembangkan aktivitas pembelajaran yang lebih inovatif dan berpusat pada peserta didik.', 'Saya akan mempelajari berbagai referensi modul ajar, mengikuti pelatihan pengembangan perangkat pembelajaran, dan melakukan revisi modul berdasarkan hasil refleksi pembelajaran.')">Penyusunan modul ajar</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan Kelas dan Bengkel', 'Melalui praktik mengajar terbimbing, saya belajar pentingnya pengelolaan kelas dan bengkel secara efektif untuk menciptakan suasana belajar yang aman, tertib, dan kondusif. Dalam pembelajaran praktik, guru tidak hanya mengatur aktivitas belajar, tetapi juga memastikan penerapan keselamatan dan kesehatan kerja (K3) selama proses praktik berlangsung.', 'Saya mampu menjaga ketertiban kelas dan mengingatkan siswa untuk menerapkan prosedur K3 selama praktik.', 'Saya masih perlu meningkatkan kemampuan dalam mengelola kelas praktik yang melibatkan banyak aktivitas secara bersamaan.', 'Saya akan mempelajari strategi manajemen kelas praktik yang lebih efektif serta meningkatkan kemampuan dalam mengantisipasi berbagai situasi yang muncul di bengkel.')">Pengelolaan kelas dan bengkel</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Penerapan Deep Learning, PBL dan PjBL', 'Saya memahami bahwa pendekatan Deep Learning, Problem Based Learning (PBL) dan Project Based Learning (PjBL) sangat sesuai diterapkan pada pembelajaran Teknik Pemesinan karena mendorong siswa belajar melalui pengalaman nyata dan penyelesaian masalah. Peserta didik tidak hanya memahami teori, tetapi juga mampu menerapkan pengetahuan dalam praktik serta melakukan refleksi terhadap hasil pekerjaannya.', 'Saya mampu merancang aktivitas pembelajaran yang menghubungkan teori dengan praktik melalui proyek sederhana.', 'Saya masih perlu meningkatkan kemampuan dalam merancang proyek yang lebih kompleks dan menantang sesuai kebutuhan industri.', 'Saya akan memperdalam pemahaman mengenai Deep Learning, PBL dan PjBL melalui literatur, pelatihan, serta berbagi praktik baik dengan guru lain.')">Penerapan Deep Learning, PBL dan PjBL</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pentingnya Komunikasi Guru &amp; Siswa', 'Selama PPL, saya menyadari bahwa komunikasi yang baik antara guru dan siswa sangat memengaruhi keberhasilan pembelajaran. Guru perlu memberikan arahan yang jelas, motivasi, serta umpan balik yang membangun agar siswa merasa nyaman, percaya diri, dan aktif dalam proses belajar.', 'Saya mampu membangun hubungan yang positif dengan siswa sehingga tercipta suasana belajar yang lebih terbuka.', 'Saya masih perlu meningkatkan kemampuan dalam memberikan pertanyaan reflektif yang dapat menggali pemahaman siswa secara lebih mendalam.', 'Saya akan melatih keterampilan komunikasi interpersonal dan memperbanyak penggunaan teknik refleksi dalam pembelajaran.')">Pentingnya komunikasi guru &amp; siswa</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengalaman Asesmen Pembelajaran', 'Saya belajar melaksanakan asesmen diagnostik, formatif, dan sumatif untuk mengetahui perkembangan belajar peserta didik. Asesmen tidak hanya digunakan untuk menilai hasil akhir, tetapi juga sebagai bahan refleksi untuk memperbaiki strategi pembelajaran dan membantu siswa memahami kekurangan yang perlu ditingkatkan.', 'Saya mampu menggunakan berbagai bentuk asesmen untuk memperoleh informasi mengenai perkembangan belajar siswa.', 'Saya masih perlu meningkatkan kemampuan dalam menyusun instrumen asesmen autentik yang lebih komprehensif.', 'Saya akan mempelajari pengembangan rubrik penilaian yang lebih terukur dan memanfaatkan hasil asesmen sebagai dasar perbaikan pembelajaran.')">Pengalaman asesmen pembelajaran</button>
                         </div>
                     </div>
                     <div id="tantangan" class="refleksi-card fade-up delay-2">
@@ -3003,11 +3079,11 @@
                         <p class="refleksi-text">Tantangan terbesar adalah menjaga fokus dan motivasi siswa saat pembelajaran teori mesin di kelas sebelum memulai praktik bengkel, serta keterbatasan alat praktik yang menuntut manajemen waktu yang sangat ketat. Solusi yang saya terapkan adalah mengimplementasikan metode <em>Project-Based Learning</em> (PjBL) dengan media interaktif 3D CAD/CAM sebelum masuk ke bengkel. Saya juga merancang sistem rotasi kelompok kerja (<em>station rotation</em>) yang efektif sehingga setiap siswa mendapatkan waktu interaksi yang adil dengan mesin frais dan bubut tanpa ada waktu tunggu yang terbuang sia-sia.</p>
                         <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin Pengalaman Menantang Selama PPL dan Solusinya:</p>
                         <div class="refleksi-btn-group">
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Siswa pasif', 'Salah satu tantangan yang saya hadapi adalah terdapat beberapa siswa yang masih pasif saat pembelajaran berlangsung. Untuk mengatasi hal tersebut, saya mencoba menggunakan metode diskusi kelompok, tanya jawab interaktif, dan pendekatan personal agar siswa lebih percaya diri dalam menyampaikan pendapat serta terlibat aktif selama pembelajaran.')">Siswa pasif</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Perbedaan kemampuan praktik', 'Kemampuan praktik peserta didik yang berbeda-beda menjadi tantangan dalam pembelajaran di bengkel. Sebagian siswa mampu bekerja mandiri, sementara yang lain masih memerlukan bimbingan intensif. Solusi yang saya lakukan adalah menerapkan pembelajaran kelompok dan memberikan scaffolding secara bertahap agar seluruh siswa tetap dapat mengikuti proses pembelajaran dengan baik.')">Perbedaan kemampuan praktik</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan waktu praktik', 'Pembelajaran praktik membutuhkan waktu yang cukup panjang, terutama saat proses setting alat dan penggunaan mesin secara bergantian. Untuk mengatasi keterbatasan waktu, saya membuat pembagian kelompok kerja dan jadwal rotasi praktik sehingga seluruh siswa tetap mendapatkan kesempatan praktik secara optimal.')">Pengelolaan waktu praktik</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Keterbatasan alat', 'Jumlah alat dan mesin praktik yang terbatas menjadi kendala dalam pelaksanaan pembelajaran. Untuk mengatasinya, saya menerapkan sistem kerja kelompok dan memanfaatkan demonstrasi awal sebelum praktik mandiri agar penggunaan alat menjadi lebih efektif dan efisien.')">Keterbatasan alat</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Kesulitan menjelaskan konsep perhitungan', 'Beberapa siswa mengalami kesulitan memahami konsep perhitungan parameter pemotongan dan pembagian sudut. Untuk membantu siswa memahami materi, saya menggunakan contoh perhitungan sederhana, media visual, demonstrasi langsung, serta mengaitkan materi dengan praktik nyata di bengkel sehingga konsep lebih mudah dipahami.')">Kesulitan menjelaskan konsep perhitungan</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Siswa Pasif', 'Salah satu tantangan yang saya hadapi adalah terdapat beberapa siswa yang masih pasif saat pembelajaran berlangsung. Untuk mengatasi hal tersebut, saya mencoba menggunakan metode diskusi kelompok, tanya jawab interaktif, dan pendekatan personal agar siswa lebih percaya diri dalam menyampaikan pendapat serta terlibat aktif selama pembelajaran.', 'Saya berupaya menciptakan suasana belajar yang lebih interaktif dan memberikan kesempatan kepada seluruh siswa untuk berpartisipasi.', 'Belum semua siswa menunjukkan peningkatan partisipasi secara konsisten.', 'Saya akan menerapkan strategi pembelajaran yang lebih variatif dan memberikan penguatan positif kepada siswa yang mulai aktif berpartisipasi.')">Siswa pasif</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Perbedaan Kemampuan Praktik', 'Kemampuan praktik peserta didik yang berbeda-beda menjadi tantangan dalam pembelajaran di bengkel. Sebagian siswa mampu bekerja mandiri, sementara yang lain masih memerlukan bimbingan intensif. Solusi yang saya lakukan adalah menerapkan pembelajaran kelompok dan memberikan scaffolding secara bertahap agar seluruh siswa tetap dapat mengikuti proses pembelajaran dengan baik.', 'Saya mampu mengidentifikasi kebutuhan bantuan yang berbeda pada setiap siswa.', 'Pendampingan individual belum dapat dilakukan secara maksimal karena keterbatasan waktu dan jumlah siswa.', 'Saya akan mengembangkan strategi tutor sebaya dan pembelajaran berdiferensiasi untuk membantu siswa dengan kemampuan yang beragam.')">Perbedaan kemampuan praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Pengelolaan Waktu Praktik', 'Pembelajaran praktik membutuhkan waktu yang cukup panjang, terutama saat proses setting alat dan penggunaan mesin secara bergantian. Untuk mengatasi keterbatasan waktu, saya membuat pembagian kelompok kerja dan jadwal rotasi praktik sehingga seluruh siswa tetap mendapatkan kesempatan praktik secara optimal.', 'Saya mampu menyusun jadwal praktik yang lebih terorganisasi.', 'Masih terdapat beberapa aktivitas yang memerlukan waktu lebih lama dari perencanaan awal.', 'Saya akan meningkatkan kemampuan perencanaan waktu dan membuat alternatif kegiatan pendukung saat siswa menunggu giliran praktik.')">Pengelolaan waktu praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Keterbatasan Alat', 'Jumlah alat dan mesin praktik yang terbatas menjadi kendala dalam pelaksanaan pembelajaran. Untuk mengatasinya, saya menerapkan sistem kerja kelompok dan memanfaatkan demonstrasi awal sebelum praktik mandiri agar penggunaan alat menjadi lebih efektif dan efisien.', 'Saya mampu memanfaatkan sumber daya yang tersedia secara optimal.', 'Kesempatan praktik individu masih belum merata bagi seluruh siswa.', 'Saya akan mengembangkan media simulasi dan lembar kerja praktik untuk mendukung pembelajaran ketika alat tidak tersedia.')">Keterbatasan alat</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Kesulitan Menjelaskan Konsep Perhitungan', 'Beberapa siswa mengalami kesulitan memahami konsep perhitungan parameter pemotongan dan pembagian sudut. Untuk membantu siswa memahami materi, saya menggunakan contoh perhitungan sederhana, media visual, demonstrasi langsung, serta mengaitkan materi dengan praktik nyata di bengkel sehingga konsep lebih mudah dipahami.', 'Saya mampu menghubungkan konsep teori dengan praktik nyata sehingga lebih mudah dipahami siswa.', 'Penjelasan konsep abstrak masih perlu disederhanakan agar dapat dipahami oleh seluruh siswa.', 'Saya akan mengembangkan media pembelajaran visual dan latihan bertahap untuk memperkuat pemahaman konsep perhitungan.')">Kesulitan menjelaskan konsep perhitungan</button>
                         </div>
                     </div>
                     <div id="umpan-balik" class="refleksi-card fade-up delay-3">
@@ -3016,11 +3092,11 @@
                         <p class="refleksi-text">Guru pamong dan dosen pembimbing memberikan masukan berharga terkait manajemen kelas saat transisi dari teori ke bengkel. Saya disarankan untuk lebih memperketat instruksi keselamatan kerja (K3) di awal sesi dan memberikan umpan balik langsung (<em>immediate feedback</em>) secara lebih terstruktur saat mendampingi siswa di setiap stasiun mesin. Saran ini menjadi fondasi penting bagi saya untuk meningkatkan kemandirian mengajar dan efisiensi pengelolaan bengkel pada tahap PPL Mandiri mendatang.</p>
                         <p class="refleksi-text" style="margin-top: 1rem; color: var(--accent-color);">Berikut poin-poin Umpan Balik yang berisi saran dari Guru Pamong dan Dosen Pembimbing:</p>
                         <div class="refleksi-btn-group">
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Pengelolaan Kelas saat Praktik', 'Berdasarkan hasil refleksi dan masukan dari dosen pembimbing serta guru pamong, saya perlu meningkatkan kemampuan dalam mengelola kelas dan bengkel praktik agar pembelajaran lebih tertib, efektif, dan kondusif. Pengelolaan yang baik sangat penting untuk menjaga fokus siswa dan memastikan keselamatan kerja selama praktik berlangsung.')">Meningkatkan Pengelolaan Kelas saat Praktik</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperjelas Instruksi Kerja', 'Saya memperoleh masukan agar memberikan instruksi kerja yang lebih jelas dan sistematis sebelum praktik dimulai. Instruksi yang baik membantu siswa memahami langkah kerja, mengurangi kesalahan praktik, dan meningkatkan efisiensi proses pembelajaran.')">Memperjelas Instruksi Kerja</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperkuat Asesmen Autentik', 'Umpan balik yang saya terima juga menekankan pentingnya penggunaan asesmen autentik yang tidak hanya menilai hasil akhir, tetapi juga proses kerja, sikap, keterampilan, dan kemampuan berpikir kritis peserta didik selama pembelajaran praktik.')">Memperkuat Asesmen Autentik</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Komunikasi Reflektif dengan Siswa', 'Saya diarahkan untuk lebih sering melakukan komunikasi reflektif dengan siswa melalui diskusi dan umpan balik setelah pembelajaran. Hal ini bertujuan agar siswa mampu mengevaluasi proses belajarnya sendiri serta meningkatkan motivasi dan rasa tanggung jawab dalam belajar.')">Meningkatkan Komunikasi Reflektif dengan Siswa</button>
-                            <button class="refleksi-btn" onclick="openRefleksiModal('Mengoptimalkan Penggunaan Media Pembelajaran', 'Penggunaan media pembelajaran yang variatif seperti video praktik, gambar kerja, dan demonstrasi langsung dinilai dapat membantu siswa memahami materi dengan lebih mudah. Oleh karena itu, saya perlu lebih mengoptimalkan penggunaan media pembelajaran agar proses belajar menjadi lebih menarik dan interaktif.')">Mengoptimalkan Penggunaan Media Pembelajaran</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Pengelolaan Kelas Saat Praktik', 'Berdasarkan hasil refleksi dan masukan dari dosen pembimbing serta guru pamong, saya perlu meningkatkan kemampuan dalam mengelola kelas dan bengkel praktik agar pembelajaran lebih tertib, efektif, dan kondusif. Pengelolaan yang baik sangat penting untuk menjaga fokus siswa dan memastikan keselamatan kerja selama praktik berlangsung.', 'Saya telah mampu menjaga suasana belajar yang relatif kondusif selama praktik.', 'Pengawasan terhadap seluruh kelompok praktik secara bersamaan masih perlu ditingkatkan.', 'Saya akan mempelajari teknik manajemen kelas praktik yang lebih efektif dan menerapkan prosedur kerja yang lebih terstruktur.')">Meningkatkan Pengelolaan Kelas saat Praktik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperjelas Instruksi Kerja', 'Saya memperoleh masukan agar memberikan instruksi kerja yang lebih jelas dan sistematis sebelum praktik dimulai. Instruksi yang baik membantu siswa memahami langkah kerja, mengurangi kesalahan praktik, dan meningkatkan efisiensi proses pembelajaran.', 'Saya telah memberikan arahan sebelum praktik dimulai.', 'Beberapa instruksi masih perlu disampaikan dengan bahasa yang lebih sederhana dan rinci.', 'Saya akan menggunakan lembar instruksi kerja, demonstrasi langsung, dan media visual untuk memperjelas langkah-langkah praktik.')">Memperjelas Instruksi Kerja</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Memperkuat Asesmen Autentik', 'Umpan balik yang saya terima juga menekankan pentingnya penggunaan asesmen autentik yang tidak hanya menilai hasil akhir, tetapi juga proses kerja, sikap, keterampilan, dan kemampuan berpikir kritis peserta didik selama pembelajaran praktik.', 'Saya telah mulai menerapkan penilaian proses dan hasil kerja siswa.', 'Instrumen asesmen autentik yang digunakan masih perlu dikembangkan agar lebih komprehensif.', 'Saya akan menyusun rubrik penilaian yang lebih rinci dan mengintegrasikan asesmen autentik dalam setiap kegiatan praktik.')">Memperkuat Asesmen Autentik</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Meningkatkan Komunikasi Reflektif dengan Siswa', 'Saya diarahkan untuk lebih sering melakukan komunikasi reflektif dengan siswa melalui diskusi dan umpan balik setelah pembelajaran. Hal ini bertujuan agar siswa mampu mengevaluasi proses belajarnya sendiri serta meningkatkan motivasi dan rasa tanggung jawab dalam belajar.', 'Saya terbuka terhadap dialog dan umpan balik dari siswa.', 'Kegiatan refleksi belum dilakukan secara konsisten pada setiap pertemuan.', 'Saya akan menyediakan waktu khusus untuk refleksi pembelajaran dan menggunakan pertanyaan pemantik yang mendorong siswa berpikir kritis.')">Meningkatkan Komunikasi Reflektif dengan Siswa</button>
+                            <button class="refleksi-btn" onclick="openRefleksiModal('Mengoptimalkan Penggunaan Media Pembelajaran', 'Penggunaan media pembelajaran yang variatif seperti video praktik, gambar kerja, dan demonstrasi langsung dinilai dapat membantu siswa memahami materi dengan lebih mudah. Oleh karena itu, saya perlu lebih mengoptimalkan penggunaan media pembelajaran agar proses belajar menjadi lebih menarik dan interaktif.', 'Saya telah memanfaatkan beberapa media pembelajaran untuk mendukung proses belajar.', 'Variasi media yang digunakan masih terbatas dan belum sepenuhnya memanfaatkan teknologi digital.', 'Saya akan mengembangkan media pembelajaran berbasis digital, memperkaya sumber belajar visual, dan memanfaatkan teknologi untuk meningkatkan keterlibatan siswa dalam pembelajaran.')">Mengoptimalkan Penggunaan Media Pembelajaran</button>
                         </div>
                     </div>
                 </div>
@@ -3034,7 +3110,7 @@
                 </div>
                 
                 <div class="filosofi-content-card fade-up delay-1">
-                    <div class="filosofi-quote-mark">â€œ</div>
+                    <div class="filosofi-quote-mark">&ldquo;</div>
                     <div class="filosofi-body-text">
                         <p>Filosofi mengajar saya berakar pada pemikiran <span style="color: var(--accent-color);">Ki Hadjar Dewantara</span>, khususnya asas <em>menuntun</em> kekuatan kodrat yang ada pada anak-anak agar mereka dapat mencapai keselamatan dan kebahagiaan yang setinggi-tingginya baik sebagai manusia maupun anggota masyarakat. Dalam konteks pendidikan vokasi Teknik Pemesinan, saya memandang proses belajar bukan sekadar mentransfer keterampilan teknis mengoperasikan mesin, melainkan proses memanusiakan hubungan kerja. Guru berperan sebagai fasilitator yang berdiri di depan memberikan teladan (<em>ing ngarsa sung tuladha</em>), di tengah membangun karsa (<em>ing madya mangun karsa</em>), dan di belakang memberikan dorongan moral serta spiritual (<em>tut wuri handayani</em>) guna menumbuhkan kemandirian belajar siswa di lingkungan bengkel yang dinamis.</p>
                         
@@ -3076,11 +3152,11 @@
         </section>
 
         <!-- Premium Analisis Modal Popup -->
-        <div class="analisis-modal-overlay" id="analisis-modal" role="dialog" aria-modal="true" aria-label="Analisis Artefak">
+        <div class="analisis-modal-overlay" id="analisis-modal" role="dialog" aria-modal="true" aria-label="Analisis Artefak" onclick="if(event.target===this) closeAnalisisModal()">
             <div class="analisis-modal">
                 <div class="analisis-modal-header">
                     <div class="analisis-modal-title-area">
-                        <span class="analisis-modal-tag" id="analisis-tag">ANALISIS ARTEFAK</span>
+                        <span class="analisis-modal-tag" id="analisis-tag">DETAIL REFLEKSI</span>
                         <h2 class="analisis-modal-title" id="analisis-title">Analisis RPP</h2>
                     </div>
                     <button class="analisis-modal-close" id="analisis-modal-close" onclick="closeAnalisisModal()" aria-label="Tutup">&times;</button>
@@ -3093,18 +3169,47 @@
     </main>
 
     <footer class="mono-text">
-        <p>&copy; 2026 Eka Sri Darma. E-Portofolio PPG Calon Guru.</p>
+        <p>&copy; 2026 Eka Sri Darma. E-Portofolio 2 PPG Calon Guru.</p>
     </footer>
 
     <!-- Inline JavaScript -->
     <script>
-        function openRefleksiModal(title, text) {
-            document.getElementById('analisis-tag').textContent = "DETAIL REFLEKSI";
+        function openRefleksiModal(title, deskripsi, kekuatan, kelemahan, rencana) {
+            document.getElementById('analisis-tag').textContent = 'DETAIL REFLEKSI';
             document.getElementById('analisis-title').textContent = title;
-            document.getElementById('analisis-body').innerHTML = '<p style="font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.8; color: rgba(245, 240, 232, 0.9); text-align: justify;">' + text + '</p>';
+            let html = `
+                <div class="rm-card rm-deskripsi">
+                    <div class="rm-card-header"><span class="rm-card-icon">📄</span><span class="rm-card-label">Deskripsi</span></div>
+                    <p class="rm-card-text">${deskripsi}</p>
+                </div>`;
+            if (kekuatan) html += `
+                <div class="rm-card rm-kekuatan">
+                    <div class="rm-card-header"><span class="rm-card-icon">💪</span><span class="rm-card-label">Kekuatan</span></div>
+                    <p class="rm-card-text">${kekuatan}</p>
+                </div>`;
+            if (kelemahan) html += `
+                <div class="rm-card rm-kelemahan">
+                    <div class="rm-card-header"><span class="rm-card-icon">⚠️</span><span class="rm-card-label">Kelemahan</span></div>
+                    <p class="rm-card-text">${kelemahan}</p>
+                </div>`;
+            if (rencana) html += `
+                <div class="rm-card rm-rencana">
+                    <div class="rm-card-header"><span class="rm-card-icon">🎯</span><span class="rm-card-label">Rencana Tindak Lanjut</span></div>
+                    <p class="rm-card-text">${rencana}</p>
+                </div>`;
+            document.getElementById('analisis-body').innerHTML = html;
             document.getElementById('analisis-modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
+        function closeAnalisisModal() {
+            const modal = document.getElementById('analisis-modal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
         // 1. Custom Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorCircle = document.querySelector('.cursor-circle');
@@ -3343,6 +3448,7 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                closeAnalisisModal();
                 document.querySelectorAll('.cert-dialog-overlay').forEach(modal => {
                     if(modal.classList.contains('active')) {
                         closeCertDialog(modal.id);
